@@ -19,22 +19,40 @@ async def on_ready():
     return
 
 
-async def display_covid_stats(covid_stats, country):
-    output = discord.Embed(
-        title = f':flag_{ISO3166.ISO3166rev.get(country).lower()}: Covid Statistics for {country.capitalize()} :flag_{ISO3166.ISO3166rev.get(country).lower()}:'        
-    )
+async def display_covid_stats(command, covid_stats, country):
+    if command == 'covid_country':
+        output = discord.Embed(
+            title = f':flag_{ISO3166.ISO3166rev.get(country).lower()}: Covid Statistics for {country.capitalize()} :flag_{ISO3166.ISO3166rev.get(country).lower()}:'        
+        )
+        
+        info_display = ''
+
+        for key, value in covid_stats.items():
+            if key == 'cases':
+                info_display += f'Total Cases: {value}\n'
+                break
+            info_display += f'{key.capitalize()}: {value}\n'
+
+        output.add_field(name='Statistics:', value=info_display)
+        
+        return output
     
-    info_display = ''
+    elif command == 'covid_global':
+        output = discord.Embed(
+            title = 'Global Covid-19 Statistics:'
+        )
 
-    for key, value in covid_stats.items():
-        if key == 'cases':
-            info_display += f'Total Cases: {value}\n'
-            break
-        info_display += f'{key.capitalize()}: {value}\n'
+        info_display = ''
 
-    output.add_field(name='Statistics:', value=info_display)
-    #output.set_image(url=covid_stats.get('countryInfo').get('flag'))
-    return output
+        for key, value in covid_stats.items():
+            if key == 'cases':
+                info_display += f'Total Cases: {value}\n'
+                break
+            info_display += f'{key.capitalize()}: {value}\n'
+
+        output.add_field(name='Statistics:', value=info_display)
+        
+        return output
 
 
 @client.event
@@ -48,29 +66,27 @@ async def on_message(message):
         return
 
     # first index is the command, second is the param
-    formattedlist = user_message.split(" ", 1) #first index is the command, second is the param
-
+    formattedlist = user_message.split(" ") #first index is the command, second is the param
     # help command (please list all commands with brief description)
     if formattedlist[0] == '~help':
         pass
 
     # global covid stats
     if formattedlist[0] == '~covid-global':
-        pass
+        stats, url_valid = info.covid_total()
+        if url_valid:
+            await message.channel.send(embed = await display_covid_stats('covid_global', stats, None))
+        else:
+            await message.channel.send('Country name is invalid')
 
     # covid stats (region specific) 
     # command: ~covid param(country name)
     if formattedlist[0] == '~covid':
-        stats, url_valid = info.covid_country(formattedlist[1])
-        
+        stats, url_valid = info.covid_country("".join(formattedlist[1:]))
         if url_valid:
-            await message.channel.send(embed = await display_covid_stats(stats, formattedlist[1]))
+            await message.channel.send(embed = await display_covid_stats('covid_country', stats, "".join(formattedlist[1:])))
         else:
             await message.channel.send('Country name is invalid')
-
-    # covid restrictions (region specific)
-    if formattedlist[0] == '~covid-restriction':
-        pass
 
     # covid news (region specific)
     if formattedlist[0] == '~covid-news':
@@ -80,10 +96,6 @@ async def on_message(message):
         else:
             await message.channel.send(embed = await news.get_covid_news())
             return
-
-    # set region
-    if formattedlist[0] == '~set-region':
-        pass
 
     # display why we wear masks/social distancing/get vaccinated
     if formattedlist[0] == '~covid-tips':
