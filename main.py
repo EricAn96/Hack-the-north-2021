@@ -99,11 +99,6 @@ async def on_message(message):
             await message.channel.send(embed = await news.get_covid_news())
             return
 
-<<<<<<< HEAD
-    # display why we wear masks/social distancing/get vaccinated
-    if formattedlist[0] == '~covid-tips':
-        pass
-=======
     # set region
     if formattedlist[0] == '~set-region':
         pass
@@ -112,7 +107,6 @@ async def on_message(message):
     if formattedlist[0] == '~tips':
         await message.channel.send(tips.get_tips())
         return
->>>>>>> 0e1a5e3c52b41f8c9091cf8b5978c07530c00891
 
     if formattedlist[0] == '~game':
         if message.author in user_db.usergameinstance:
