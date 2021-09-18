@@ -5,6 +5,7 @@ import game
 import info
 import user_db
 import questions
+import tips
 from discord.ext import commands
 
 
@@ -62,9 +63,10 @@ async def on_message(message):
     if formattedlist[0] == '~set-region':
         pass
 
-    # display why we wear masks/social distancing/get vaccinated
-    if formattedlist[0] == '~covid-tips':
-        pass
+    # display tips to stay safe from covid
+    if formattedlist[0] == '~tips':
+        await message.channel.send(tips.get_tips())
+        return
 
     if formattedlist[0] == '~game':
         if message.author in user_db.usergameinstance:
