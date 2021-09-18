@@ -1,11 +1,11 @@
-#from game import gameplayinstance
+from game import gameplayinstance
 import discord
-#import news
-#import game
-#import info
-#import user_db
-#import questions
-#import tips
+import news
+import game
+import info
+import user_db
+import questions
+import tips
 import help
 from discord.ext import commands
 import ISO3166
