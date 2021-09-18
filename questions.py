@@ -69,7 +69,7 @@ questions = [
 
 conversions = {
     "A" : True,
-    "B" : True,
-    "a" : False,
+    "a" : True,
+    "B" : False,
     "b" : False
 }
