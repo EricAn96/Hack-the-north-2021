@@ -37,4 +37,6 @@ Explanation
 - Covid tips and tricks
     - A guide to improve your safety and minimize the risk of infection
 
+#### [Devpost Project](https://devpost.com/software/covidiot-covid-themed-discord-bot)
+
 
