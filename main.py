@@ -5,6 +5,8 @@ import game
 import info
 import user_db
 import questions
+import tips
+import help
 from discord.ext import commands
 import ISO3166
 
@@ -52,7 +54,7 @@ async def on_message(message):
 
     # help command (please list all commands with brief description)
     if formattedlist[0] == '~help':
-        pass
+        await message.channel.send(embed=help.get_help())
 
     # global covid stats
     if formattedlist[0] == '~covid-global':
@@ -85,9 +87,10 @@ async def on_message(message):
     if formattedlist[0] == '~set-region':
         pass
 
-    # display why we wear masks/social distancing/get vaccinated
-    if formattedlist[0] == '~covid-tips':
-        pass
+    # display tips to stay safe from covid
+    if formattedlist[0] == '~tips':
+        await message.channel.send(tips.get_tips())
+        return
 
     if formattedlist[0] == '~game':
         if message.author in user_db.usergameinstance:
