@@ -7,15 +7,10 @@ import user_db
 import questions
 import tips
 import help
-import os
-from dotenv import load_dotenv, find_dotenv
-from discord.ext import commands
 import ISO3166
 
 
-client = discord.Client()
-load_dotenv(find_dotenv())
-TOKEN=os.environ.get("TOKEN")
+TOKEN="ODg4Nzc2Mjg1MjMxMzg2NjM0.YUXnaw.sTAoZIDiy8X1mDhMkaRV8JQyEpQ"
 
 @client.event
 async def on_ready():
