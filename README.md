@@ -36,15 +36,4 @@ Explanation
     - Explanations for each question to further your understanding
 - Covid tips and tricks
     - A guide to improve your safety and minimize the risk of infection
-
-
-## Installation
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to Covi.
-
-```bash
-pip install -r requirements.txt
-```
-
-## Usage
-
+    - 
