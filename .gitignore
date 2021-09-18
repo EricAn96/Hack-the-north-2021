@@ -1,6 +1,3 @@
-#ENV file
-
-/env.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -131,3 +128,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+#ENV file
+env.py
