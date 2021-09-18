@@ -1,11 +1,11 @@
-from game import gameplayinstance
+#from game import gameplayinstance
 import discord
-import news
-import game
-import info
-import user_db
-import questions
-import tips
+#import news
+#import game
+#import info
+#import user_db
+#import questions
+#import tips
 import help
 import ISO3166
 
@@ -36,7 +36,8 @@ def prettify_num(num):
 async def display_covid_stats(command, covid_stats, country):
     if command == 'covid_country':
         output = discord.Embed(
-            title = f':flag_{ISO3166.ISO3166rev.get(country).lower()}: Covid Statistics for {country.capitalize()} :flag_{ISO3166.ISO3166rev.get(country).lower()}:'        
+            title = f':flag_{ISO3166.ISO3166rev.get(country).lower()}: Covid Statistics for {country.capitalize()} :flag_{ISO3166.ISO3166rev.get(country).lower()}:',        
+            color = 0xb23831
         )
         
         info_display = ''
@@ -54,7 +55,8 @@ async def display_covid_stats(command, covid_stats, country):
     
     elif command == 'covid_global':
         output = discord.Embed(
-            title = '🌎Global Covid-19 Statistics:🌎'
+            title = '🌎Global Covid-19 Statistics🌎',
+            color = 0xb23831
         )
 
         info_display = ''
@@ -124,7 +126,7 @@ async def on_message(message):
 
     if formattedlist[0] == '~game':
         if message.author in user_db.usergameinstance:
-            await message.channel.send(embed = discord.Embed(title = "Ongoing Game", description="Use ~answer {a/A or b/B} to respond to a question.\nEnter ~game to see your question again").add_field(name="Current Question: ", value=f'{questions.questions[user_db.usergameinstance[message.author].qindex][0]}'))
+            await message.channel.send(embed = discord.Embed(title = "Ongoing Game", description="Use ~answer {a/A or b/B} to respond to a question.\nEnter ~game to see your question again"),color = 0xb23831.add_field(name="Current Question: ", value=f'{questions.questions[user_db.usergameinstance[message.author].qindex][0]}'))
             return
         else:
             user_db.usergameinstance[message.author] = gameplayinstance()

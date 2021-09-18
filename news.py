@@ -50,6 +50,7 @@ async def parse_covid_info(index):
         title = index["title"],
         url = index["link"],
         description = index["snippet"],
+        color = 0xb23831,
     ).set_image(url = index["thumbnail"])
     return output
 
