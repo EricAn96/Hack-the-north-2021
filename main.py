@@ -18,7 +18,8 @@ async def on_ready():
     print('We have logged in a {0.user}'.format(client))
     return
 
-async def prettify_num(num):
+def prettify_num(num):
+    print(num)
     counter = 0
     res = ""
     for i in range(1, len(num)+1):
@@ -26,6 +27,7 @@ async def prettify_num(num):
         counter += 1
         if counter % 3 == 0:
             res += ","
+    print(res)
     return res
         
 
