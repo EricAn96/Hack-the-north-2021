@@ -7,11 +7,14 @@ import user_db
 import questions
 import tips
 import help
+import os
+from dotenv import load_dotenv, find_dotenv
 import ISO3166
 
 
 client = discord.Client()
-TOKEN="ODg4Nzc2Mjg1MjMxMzg2NjM0.YUXnaw.sTAoZIDiy8X1mDhMkaRV8JQyEpQ"
+load_dotenv(find_dotenv())
+TOKEN=os.environ.get("TOKEN")
 
 
 @client.event
