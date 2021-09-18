@@ -18,6 +18,17 @@ async def on_ready():
     print('We have logged in a {0.user}'.format(client))
     return
 
+async def prettify_num(num):
+    counter = 0
+    res = ""
+    for i in range(1, len(num)+1):
+        res += num[-i]
+        counter += 1
+        if counter % 3 == 0:
+            res += ","
+    return res
+        
+
 async def display_covid_stats(command, covid_stats, country):
     if command == 'covid_country':
         output = discord.Embed(
@@ -27,6 +38,7 @@ async def display_covid_stats(command, covid_stats, country):
         info_display = ''
 
         for key, value in covid_stats.items():
+            value = prettify_num(value)
             if key == 'cases':
                 info_display += f'Total Cases: {value}\n'
                 continue
