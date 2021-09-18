@@ -33,7 +33,6 @@ def covid_country(country):
     if url_valid:
         data['Vaccine doses'] = vac_stats['timeline'][f"{today.month}/{today.day}/{today.year%100}"]
     return data, url_valid
-        
 
 def covid_total():
     stats, url_valid = get_endpoint('/v3/covid-19/all')

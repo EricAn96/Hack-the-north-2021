@@ -39,7 +39,7 @@ async def display_covid_stats(command, covid_stats, country):
     
     elif command == 'covid_global':
         output = discord.Embed(
-            title = 'Global Covid-19 Statistics:'
+            title = '🌎Global Covid-19 Statistics:🌎'
         )
 
         info_display = ''
