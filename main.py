@@ -72,7 +72,7 @@ async def on_message(message):
             return
         else:
             user_db.usergameinstance[message.author] = gameplayinstance()
-            await message.channel.send(await user_db.usergameinstance[message.author].iterate("", message.author))
+            await message.channel.send(embed = await user_db.usergameinstance[message.author].iterate("", message.author))
             return
 
     if formattedlist[0] == '~answer':
@@ -80,9 +80,9 @@ async def on_message(message):
             await message.channel.send("Start a game with ~game")
             return
         if len(formattedlist) == 2:
-            await message.channel.send(await user_db.usergameinstance[message.author].iterate(formattedlist[1], message.author))
+            await message.channel.send(embed = await user_db.usergameinstance[message.author].iterate(formattedlist[1], message.author))
             return
-        await message.channel.send("Invalid entry, use ~answer {yes/no or true/false}")
+        await message.channel.send(embed = discord.Embed(Title = "Invalid Entry", description="Use ~answer {a/A or b/B} to respond to a question.\nEnter ~game to see your question again"))
 
     if formattedlist[0] == '~highscore':
         if len(formattedlist) == 2:
