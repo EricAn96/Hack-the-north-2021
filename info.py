@@ -32,7 +32,7 @@ def covid_country(country):
 
     today = date.today()
     if url_valid:
-        data['Vaccine doses'] = vac_stats['timeline'][f"{today.month}/{today.day}/{today.year%100}"]
+        data['Vaccine Doses'] = vac_stats['timeline'][f"{today.month}/{today.day}/{today.year%100}"]
 
     print(data)
     return data, url_valid

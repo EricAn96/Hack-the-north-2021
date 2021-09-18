@@ -5,7 +5,8 @@ import user_db
 
 async def gethighscores():
     output = discord.Embed(
-        title='True/False Game Highscores'
+        title='True/False Game Highscores',
+        color = 0xb23831,
     )
 
     arr = await tensort()
