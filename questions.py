@@ -7,13 +7,13 @@ questions = [
     A: Crown\n\
     B: Strong", True, 
     "Crown. Spike proteins on these viruses\' outer coating give them the appearance of a crown or halo."],
-    ["There is more than one coronavirus.", True,
+    ["There is more than one coronavirus. True: A/False: B", True,
     "There are hundreds of coronaviruses, and some of them cause disease in humans, such as mild colds and more serious illnesses or death. The SARS-CoV-2 coronavirus, along with those that cause SARS and MERS are examples of coronaviruses that can cause serious illness in people."],
     ["An effective hand sanitizer contains at least this percentage of alcohol to kill the coronavirus and other germs:\n\
     A: 80%\n\
     B: 60%", False,
     "60%. Lower alcohol content may make a hand sanitizer less effective in killing the coronavirus and other pathogens."],
-    ["Once you are fully vaccinated you may not be required to wear a mask in public places.", True,
+    ["Once you are fully vaccinated you may not be required to wear a mask in public places. True: A/False: B", True,
     "The CDC has updated its recommendations on resuming some activities once you have completed your COVID-19 vaccines and allowed at least two weeks for your immune system to respond after your last shot. Fully vaccinated people can resume activities without wearing a mask or physically distancing, except where required by federal, state, local, tribal, or territorial laws, rules, and regulations, including local business and workplace guidance. The CDC continues to recommend that masks and physical distancing are required when going to the doctor\'s office, hospitals or long-term care facilities, including all Johns Hopkins hospitals, care centers and offices."],
     ["When is it safe to be closer than 6 feet to another person who is not sick with COVID-19?\n\
     A: When you have already had COVID-19\n\
@@ -31,15 +31,15 @@ questions = [
     A: Having a virtual party using an online conferencing app.\n\
     B: Sharing a meal with relatives only.", True, 
     "Having a virtual party is the safest option. Gathering in person, especially indoors, with people that you don\'t normally live with — even if they\'re relatives or good friends — is risky. Situations where masks aren\'t being worn or are being removed to eat or drink are especially likely to spread the coronavirus and cause illness."],
-    ["Having a food allergy means you should not get a COVID-19 vaccine", False, 
+    ["Having a food allergy means you should not get a COVID-19 vaccine. True: A/False: B", False, 
     "People with food allergies can be vaccinated for the coronavirus. However, those who are seriously allergic to any of the ingredients in the vaccine itself should not get the vaccine."],
-    ["Can you always tell if someone has COVID-19?", False, 
+    ["Can you always tell if someone has COVID-19? True: A/False: B", False, 
     "The virus can be in someone\'s body for up to 14 days before they get symptoms, and some people will have such a mild case of COVID-19 that they might not notice anything is wrong. That\'s why it\'s important that everyone follows their government\'s advice even if they feel healthy."],
     ["Can washing your hands protect you from COVID-19? \n\
     A: Yes - only if you use a strong bleach\n\
     B: Yes - normal soap and water or hand sanitizer is enough", False, 
     "Washing your hands regularly is one of the best way to avoid getting or passing on COVID-19. It\'s important to keep washing your hands throughout the day especially before and after going out. To wash your hands properly you need to get every spot. Make sure you wash them for at least 40 seconds if you are using soap and water, and for at least 20 seconds if you\'re using hand sanitizer."],
-    ["Kids can’t get COVID-19.", False, 
+    ["Kids can’t get COVID-19. True: A/False: B", False, 
     "Kids can get COVID-19, although they often only experience mild symptoms."],
     ["What is herd immunity\n\
     A: When a large group of people develop a resistance to an illness.\n\
@@ -57,9 +57,9 @@ questions = [
     A: Right away\n\
     B: 4-8 days after or as directed by Public Health", False, 
     "While many people may rush to get tested as soon as they suspect a possible exposure, the screening test will actually be most effective 4-8 days after a suspected exposure. While you are waiting to be tested, be sure to take appropriate precautions in terms of self-isolating to ensure you don\'t spread it to others if you are positive."],
-    ["Smoking can pose specific risks around COVID-19.", True, 
+    ["Smoking can pose specific risks around COVID-19. True: A/False: B", True, 
     "If smokers are in close contact with others, this can increase the risk of spreading and contracting COVID-19. As smoking compromises lung health, that can also increase the risk of complications from COVID-19. Experts advise that any steps you can take to protect your respiratory health throughout the pandemic are a good idea."],
-    ["Living in a condo increases the risk of COVID-19.", False, 
+    ["Living in a condo increases the risk of COVID-19. True: A/False: B", False, 
     "All the current evidence suggests COVID-19 is not spread through air ducts, so there is no added risk of living in a condo or apartment building in terms of how air is circulated. However, sharing common spaces (e.g., elevators, lobbies, gyms) means that you should wear your mask continuously in these areas, clean and disinfect where applicable and clean your hands frequently."],
     ["What are the best ways to regain strength if you\'ve been affected by COVID-19?:\n\
     A: A combination of strength and aerobic activity\n\
@@ -69,7 +69,7 @@ questions = [
 
 conversions = {
     "A" : True,
-    "B" : True,
-    "a" : False,
+    "B" : False,
+    "a" : True,
     "b" : False
 }

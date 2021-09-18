@@ -2,7 +2,7 @@ import discord
 
 def get_help():
     helpEmbed = discord.Embed(title = "help", description = "Covi was created to help people keep themselves informed on COVID-19.\nOur commands:")
-    helpEmbed.add_field(name = "~covid global", value = "Displays global COVID-19-related statistics", inline = True)
+    helpEmbed.add_field(name = "~covid-global", value = "Displays global COVID-19-related statistics", inline = True)
     helpEmbed.add_field(name = "~covid [country]", value = "Displays country COVID-19-related statistics", inline = True)
     helpEmbed.add_field(name = "~covid-news [country (optional)]", value = "Displays one of the country's/globe's current top 3 COVID-19 news articles", inline = False)
     helpEmbed.add_field(name = "~tips", value = "Provides a random tip to keep you safe from COVID-19", inline = False)
