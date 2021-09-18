@@ -3,6 +3,7 @@ import discord
 import questions
 import user_db
 
+
 async def gethighscores():
     output = discord.Embed(
         title='True/False Game Highscores'
@@ -17,6 +18,7 @@ async def gethighscores():
     print(OV)
     output.add_field(name= "Top 10:", value = OV)
     return output
+
 
 async def tensort():
     whitelist = []
@@ -33,6 +35,7 @@ async def tensort():
         whitelist.append(biggestkey)
         output.append([str(biggestkey), str(biggest)])
     return output
+
 
 class gameplayinstance:
     def __init__(self):

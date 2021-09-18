@@ -1,7 +1,7 @@
 from random import randint
 
-def get_tips():
 
+def get_tips():
     with open("tips.txt") as file:
         lines = file.readlines()
         lines = [line.rstrip() for line in lines]

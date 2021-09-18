@@ -3,6 +3,7 @@ import json
 from datetime import date
 import ISO3166
 
+
 # returns entire data from specific endpoint as python dictionary
 def get_endpoint(param):
     API_ENDPOINT = f'https://disease.sh{param}'
@@ -36,6 +37,7 @@ def covid_country(country):
 
     print(data)
     return data, url_valid
+
 
 def covid_total():
     stats, url_valid = get_endpoint('/v3/covid-19/all')

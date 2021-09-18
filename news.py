@@ -3,6 +3,7 @@ import discord
 import random
 import ISO3166
 
+
 #case 0: global information
 async def get_covid_news_location(loc):
 
@@ -22,6 +23,7 @@ async def get_covid_news_location(loc):
 
     return await parse_covid_info_arr(news_results)
 
+
 #case 1: local information
 async def get_covid_news():
     params = {
@@ -37,9 +39,11 @@ async def get_covid_news():
 
     return await parse_covid_info_arr(news_results)
 
+
 #layer in case we do multiple news post per command
 async def parse_covid_info_arr(news_data):
     return await parse_covid_info(news_data[random.randint(0,2)])   #get one of top 3 results
+
 
 async def parse_covid_info(index):
     output = discord.Embed(
