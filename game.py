@@ -40,35 +40,42 @@ class gameplayinstance:
         self.strikes = 3
 
     async def newV(self):
-        self.qindex = random.randint(0,len(questions.questions)-1) #TBD: randint inside dataset
+        self.qindex = random.randint(0,len(questions.questions)-1)
         OV = ""
         OV += "\n" + questions.questions[self.qindex][0]
         return OV
 
     async def iterate(self, prompt, playername):
-        output = ""
+        output = discord.Embed()
         if not hasattr(self,'qindex'):
-            output += "True or False Covid facts: "
-            output += await self.newV()
+            output.title = "True or False?:"
+            output.description="Use ~answer {a/A or b/B} to respond to a question.\nEnter ~game to see your question again"
+            output.add_field(name = "Question: ", value = await self.newV())
             return output
         #print(self.qindex)
 
         if not prompt.lower() in questions.conversions:
-            output += "Invalid entry, use yes/no or true/false"
+            #output += "Invalid entry, use yes/no or true/false"
+            output.title = "Invalid Entry"
+            output.description="Use ~answer {a/A or b/B} to respond to a question.\nEnter ~game to see your question again"
             return output
 
         if(questions.questions[self.qindex]):
             if(questions.questions[self.qindex][1] == questions.conversions[prompt.lower()]):
                 self.score +=1
-                output += f'Correct! \n\
-                    Your current score is: {self.score}.\nYour next question is: '
-                output += await self.newV()
+                output.title ='Correct!'
+                output.add_field(name="Explanation", value=questions.questions[self.qindex][2])
+                output.add_field(name="Current Score", value=f'{self.score}', inline=False)
+                output.add_field(name="Next Question: ", value=await self.newV(), inline=False)
                 return output
             else:
                 self.strikes-=1
-                output += f"Incorrect!"
+                output.title ='Incorrect!'
+                output.add_field(name="Explanation", value=questions.questions[self.qindex][2])
                 if(self.strikes == 0):
-                    output += f'Your current score is: {self.score}.' + " Game over, you've used up all your chances.\nEnter ~game again to start a new round"
+                    output.title="Game Over"
+                    output.add_field(name="Current Score", value=f'{self.score}', inline=False)
+                    output.description = "Game over, you've used up all your chances.\nEnter ~game again to start a new round"
                     user_db.usergameinstance.pop(playername)
                     if playername in user_db.userhighscore_name:
                         user_db.userhighscore_name[playername] = max(user_db.userhighscore_name[playername], self.score)
@@ -76,6 +83,6 @@ class gameplayinstance:
                         user_db.userhighscore_name[playername] = self.score
                     return output
                 else:
-                    output += f'You have {self.strikes} changes left.\nYour next question is: '
-                    output += await self.newV()
+                    output.description = f'You have {self.strikes} chances left.'
+                    output.add_field(name="Next Question: ", value=await self.newV(),inline=False)
                     return output

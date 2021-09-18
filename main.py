@@ -5,6 +5,8 @@ import game
 import info
 import user_db
 import questions
+import tips
+import help
 from discord.ext import commands
 import ISO3166
 
@@ -69,7 +71,7 @@ async def on_message(message):
     formattedlist = user_message.split(" ") #first index is the command, second is the param
     # help command (please list all commands with brief description)
     if formattedlist[0] == '~help':
-        pass
+        await message.channel.send(embed=help.get_help())
 
     # global covid stats
     if formattedlist[0] == '~covid-global':
@@ -97,17 +99,28 @@ async def on_message(message):
             await message.channel.send(embed = await news.get_covid_news())
             return
 
+<<<<<<< HEAD
     # display why we wear masks/social distancing/get vaccinated
     if formattedlist[0] == '~covid-tips':
         pass
+=======
+    # set region
+    if formattedlist[0] == '~set-region':
+        pass
+
+    # display tips to stay safe from covid
+    if formattedlist[0] == '~tips':
+        await message.channel.send(tips.get_tips())
+        return
+>>>>>>> 0e1a5e3c52b41f8c9091cf8b5978c07530c00891
 
     if formattedlist[0] == '~game':
         if message.author in user_db.usergameinstance:
-            await message.channel.send("You currently have a ongoing game.\nUse ~answer {yes/true/no/false} to respond.\nYour current question is:\n" + questions.questions[user_db.usergameinstance[message.author].qindex][0])
+            await message.channel.send(embed = discord.Embed(title = "Ongoing Game", description="Use ~answer {a/A or b/B} to respond to a question.\nEnter ~game to see your question again").add_field(name="Current Question: ", value=f'{questions.questions[user_db.usergameinstance[message.author].qindex][0]}'))
             return
         else:
             user_db.usergameinstance[message.author] = gameplayinstance()
-            await message.channel.send(await user_db.usergameinstance[message.author].iterate("", message.author))
+            await message.channel.send(embed = await user_db.usergameinstance[message.author].iterate("", message.author))
             return
 
     if formattedlist[0] == '~answer':
@@ -115,9 +128,9 @@ async def on_message(message):
             await message.channel.send("Start a game with ~game")
             return
         if len(formattedlist) == 2:
-            await message.channel.send(await user_db.usergameinstance[message.author].iterate(formattedlist[1], message.author))
+            await message.channel.send(embed = await user_db.usergameinstance[message.author].iterate(formattedlist[1], message.author))
             return
-        await message.channel.send("Invalid entry, use ~answer {yes/no or true/false}")
+        await message.channel.send(embed = discord.Embed(title = "Invalid Entry", description="Use ~answer {a/A or b/B} to respond to a question.\nEnter ~game to see your question again"))
 
     if formattedlist[0] == '~highscore':
         if len(formattedlist) == 2:
