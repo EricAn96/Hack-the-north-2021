@@ -15,12 +15,10 @@ import ISO3166
 client = discord.Client()
 TOKEN=env.TOKEN_ENV
 
-
 @client.event
 async def on_ready():
     print('We have logged in a {0.user}'.format(client))
     return
-
 
 async def display_covid_stats(command, covid_stats, country):
     if command == 'covid_country':
