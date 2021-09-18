@@ -6,15 +6,35 @@ import info
 import user_db
 import questions
 from discord.ext import commands
+import ISO3166
 
 
 client = discord.Client()
 TOKEN="ODg4Nzc2Mjg1MjMxMzg2NjM0.YUXnaw.xXM9xuX2RF2mzoRm3XU-41iXcUU"
 
+
 @client.event
 async def on_ready():
     print('We have logged in a {0.user}'.format(client))
     return
+
+
+async def display_covid_stats(covid_stats, country):
+    output = discord.Embed(
+        title = f':flag_{ISO3166.ISO3166rev.get(country).lower()}: Covid Statistics for {country.capitalize()} :flag_{ISO3166.ISO3166rev.get(country).lower()}:'        
+    )
+    
+    info_display = ''
+
+    for key, value in covid_stats.items():
+        if key == 'cases':
+            info_display += f'Total Cases: {value}\n'
+            break
+        info_display += f'{key.capitalize()}: {value}\n'
+
+    output.add_field(name='Statistics:', value=info_display)
+    #output.set_image(url=covid_stats.get('countryInfo').get('flag'))
+    return output
 
 
 @client.event
@@ -41,9 +61,12 @@ async def on_message(message):
     # covid stats (region specific) 
     # command: ~covid param(country name)
     if formattedlist[0] == '~covid':
-        stats = info.covid_country(formattedlist[1])
-        for key, value in stats.items():
-            await message.channel.send(key +': ' + str(value))
+        stats, url_valid = info.covid_country(formattedlist[1])
+        
+        if url_valid:
+            await message.channel.send(embed = await display_covid_stats(stats, formattedlist[1]))
+        else:
+            await message.channel.send('Country name is invalid')
 
     # covid restrictions (region specific)
     if formattedlist[0] == '~covid-restriction':
@@ -94,7 +117,6 @@ async def on_message(message):
             return
         else:
             await message.channel.send(embed = await game.gethighscores())
-
 
     
 try :
