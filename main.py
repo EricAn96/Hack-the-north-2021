@@ -38,11 +38,10 @@ async def display_covid_stats(command, covid_stats, country):
         info_display = ''
 
         for key, value in covid_stats.items():
-            value = prettify_num(value)
             if key == 'cases':
-                info_display += f'Total Cases: {value}\n'
+                info_display += f'Total Cases: {prettify_num(value)}\n'
                 continue
-            info_display += f'{key.capitalize()}: {value}\n'
+            info_display += f'{key.capitalize()}: {prettify_num(value)}\n'
 
         output.add_field(name='Statistics:', value=info_display)
         
@@ -56,11 +55,10 @@ async def display_covid_stats(command, covid_stats, country):
         info_display = ''
 
         for key, value in covid_stats.items():
-            value = prettify_num(value)
             if key == 'cases':
-                info_display += f'Total Cases: {value}\n'
+                info_display += f'Total Cases: {prettify_num(value)}\n'
                 continue
-            info_display += f'{key.capitalize()}: {value}\n'
+            info_display += f'{key.capitalize()}: {prettify_num(value)}\n'
 
         output.add_field(name='Statistics:', value=info_display)
         
