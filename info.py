@@ -26,6 +26,7 @@ def covid_country(country):
     country = ISO3166.ISO3166rev.get(country)
     stats, url_valid = get_endpoint(f'/v3/covid-19/countries/{country}')
     vac_stats, dummy = get_endpoint(f'/v3/covid-19/vaccine/coverage/countries/{country}?lastdays=1&fullData=false')
+
     keys = ['active', 'critical', 'deaths', 'recovered', 'tests', 'today', 'cases']
     data = {x:stats[x] for x in keys if x in stats}
 
@@ -38,7 +39,13 @@ def covid_country(country):
 
 def covid_total():
     stats, url_valid = get_endpoint('/v3/covid-19/all')
+    vac_stats, dummy = get_endpoint('/v3/covid-19/vaccine/coverage')
+
     keys = ['active', 'critical', 'deaths', 'recovered', 'tests', 'today', 'cases']
     data = {x:stats[x] for x in keys if x in stats}
+
+    today = date.today()
+    if url_valid:
+        data['Vaccine doses'] = vac_stats[f"{today.month}/{today.day}/{today.year%100}"]
 
     return data, url_valid

@@ -13,6 +13,7 @@ import ISO3166
 client = discord.Client()
 TOKEN="ODg4Nzc2Mjg1MjMxMzg2NjM0.YUXnaw.sTAoZIDiy8X1mDhMkaRV8JQyEpQ"
 
+
 @client.event
 async def on_ready():
     print('We have logged in a {0.user}'.format(client))
