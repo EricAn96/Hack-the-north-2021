@@ -1,11 +1,12 @@
-from game import gameplayinstance
+#from game import gameplayinstance
 import discord
-import news
-import game
-import info
-import user_db
-import questions
-import tips
+#import news
+#import game
+#import info
+#import user_db
+#import questions
+#import tips
+import help
 from discord.ext import commands
 import ISO3166
 
@@ -53,7 +54,7 @@ async def on_message(message):
 
     # help command (please list all commands with brief description)
     if formattedlist[0] == '~help':
-        pass
+        await message.channel.send(embed=help.get_help())
 
     # global covid stats
     if formattedlist[0] == '~covid-global':
