@@ -7,13 +7,12 @@ import user_db
 import questions
 import tips
 import help
-import env
 from discord.ext import commands
 import ISO3166
 
 
 client = discord.Client()
-TOKEN=env.TOKEN_ENV
+TOKEN="ODg4Nzc2Mjg1MjMxMzg2NjM0.YUXnaw.ON9qZ1S5DZGnF1HSeZST-pcAkDM"
 
 @client.event
 async def on_ready():
