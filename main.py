@@ -13,22 +13,21 @@ import ISO3166
 client = discord.Client()
 TOKEN="ODg4Nzc2Mjg1MjMxMzg2NjM0.YUXnaw.sTAoZIDiy8X1mDhMkaRV8JQyEpQ"
 
-
 @client.event
 async def on_ready():
     print('We have logged in a {0.user}'.format(client))
     return
 
 def prettify_num(num):
-    print(num)
     counter = 0
     res = ""
     for i in range(1, len(num)+1):
-        res += num[-i]
+        res = num[-i] + res
         counter += 1
         if counter % 3 == 0:
-            res += ","
-    print(res)
+            res = "," + res
+    if res[0] == ",":
+        res = res[1:]
     return res
         
 
@@ -41,10 +40,11 @@ async def display_covid_stats(command, covid_stats, country):
         info_display = ''
 
         for key, value in covid_stats.items():
+            value = prettify_num(str(value))
             if key == 'cases':
-                info_display += f'Total Cases: {prettify_num(value)}\n'
+                info_display += f'Total Cases: {value}\n'
                 continue
-            info_display += f'{key.capitalize()}: {prettify_num(value)}\n'
+            info_display += f'{key.capitalize()}: {value}\n'
 
         output.add_field(name='Statistics:', value=info_display)
         
@@ -58,10 +58,11 @@ async def display_covid_stats(command, covid_stats, country):
         info_display = ''
 
         for key, value in covid_stats.items():
+            value = prettify_num(str(value))
             if key == 'cases':
-                info_display += f'Total Cases: {prettify_num(value)}\n'
+                info_display += f'Total Cases: {value}\n'
                 continue
-            info_display += f'{key.capitalize()}: {prettify_num(value)}\n'
+            info_display += f'{key.capitalize()}: {value}\n'
 
         output.add_field(name='Statistics:', value=info_display)
         
