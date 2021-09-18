@@ -60,7 +60,9 @@ class gameplayinstance:
         if(questions.questions[self.qindex]):
             if(questions.questions[self.qindex][1] == questions.conversions[prompt.lower()]):
                 self.score +=1
-                output += f'Correct! Your current score is: {self.score}.\nYour next question is: '
+                output += f'Correct! \n\
+                    \n\
+                    Your current score is: {self.score}.\nYour next question is: '
                 output += await self.newV()
                 return output
             else:
