@@ -1,5 +1,11 @@
+from game import gameplayinstance
 import discord
+import news
+import game
 import info
+import user_db
+import questions
+from discord.ext import commands
 
 
 client = discord.Client()
@@ -20,11 +26,11 @@ async def on_message(message):
 
     if message.author == client.user:
         return
-    
-    # first index is the command, second is the param
-    formattedlist = user_message.split(' ', 1)
 
-    # help command (displays list of all commands with brief description)
+    # first index is the command, second is the param
+    formattedlist = user_message.split(" ", 1) #first index is the command, second is the param
+
+    # help command (please list all commands with brief description)
     if formattedlist[0] == '~help':
         pass
 
@@ -32,10 +38,66 @@ async def on_message(message):
     if formattedlist[0] == '~covid-global':
         pass
 
-    # covid stats (region specific)
+    # covid stats (region specific) 
     # command: ~covid param(country name)
     if formattedlist[0] == '~covid':
         stats = info.covid_country(formattedlist[1])
-        
         for key, value in stats.items():
-            await message.channel.send(key + ': ' + str(value))
+            await message.channel.send(key +': ' + str(value))
+
+    # covid restrictions (region specific)
+    if formattedlist[0] == '~covid-restriction':
+        pass
+
+    # covid news (region specific)
+    if formattedlist[0] == '~covid-news':
+        if(len(formattedlist) == 2):
+            await message.channel.send(embed = await news.get_covid_news_location(formattedlist[1]))
+            return
+        else:
+            await message.channel.send(embed = await news.get_covid_news())
+            return
+
+    # set region
+    if formattedlist[0] == '~set-region':
+        pass
+
+    # display why we wear masks/social distancing/get vaccinated
+    if formattedlist[0] == '~covid-tips':
+        pass
+
+    if formattedlist[0] == '~game':
+        if message.author in user_db.usergameinstance:
+            await message.channel.send("You currently have a ongoing game.\nUse ~answer {yes/true/no/false} to respond.\nYour current question is:\n" + questions.questions[user_db.usergameinstance[message.author].qindex][0])
+            return
+        else:
+            user_db.usergameinstance[message.author] = gameplayinstance()
+            await message.channel.send(await user_db.usergameinstance[message.author].iterate("", message.author))
+            return
+
+    if formattedlist[0] == '~answer':
+        if not message.author in user_db.usergameinstance:
+            await message.channel.send("Start a game with ~game")
+            return
+        if len(formattedlist) == 2:
+            await message.channel.send(await user_db.usergameinstance[message.author].iterate(formattedlist[1], message.author))
+            return
+        await message.channel.send("Invalid entry, use ~answer {yes/no or true/false}")
+
+    if formattedlist[0] == '~highscore':
+        if len(formattedlist) == 2:
+            if not formattedlist[1] in user_db.userhighscore_name:
+                print(user_db.userhighscore_name)
+                await message.channel.send("No high score by this player")
+                return
+            await message.channel.send(f"{formattedlist[1]}'s high score: {user_db.userhighscore_name[formattedlist[1]]}")
+            return
+        else:
+            await message.channel.send(embed = await game.gethighscores())
+
+
+    
+try :
+    client.run(TOKEN)
+except discord.errors.HTTPException:
+    print("Token is broken, get a new one") 

@@ -60,12 +60,15 @@ class gameplayinstance:
         if(questions.questions[self.qindex]):
             if(questions.questions[self.qindex][1] == questions.conversions[prompt.lower()]):
                 self.score +=1
-                output += f'Correct! Your current score is: {self.score}.\nYour next question is: '
+                output += f'Correct! \n\
+                    Explanation: {questions.questions[2]}\n\
+                    Your current score is: {self.score}.\nYour next question is: '
                 output += await self.newV()
                 return output
             else:
                 self.strikes-=1
-                output += "Incorrect! "
+                output += f"Incorrect! \n\
+                    Explanation: {questions.questions[2]}"
                 if(self.strikes == 0):
                     output += f'Your current score is: {self.score}.' + " Game over, you've used up all your chances.\nEnter ~game again to start a new round"
                     user_db.usergameinstance.pop(playername)
