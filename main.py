@@ -28,7 +28,7 @@ def prettify_num(num):
         counter += 1
         if counter % 3 == 0:
             res = "," + res
-    if res[0] == ",":
+    if counter >= 3 and res[0] == ",":
         res = res[1:]
     return res
         
