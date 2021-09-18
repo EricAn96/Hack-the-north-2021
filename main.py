@@ -91,7 +91,7 @@ async def on_message(message):
 
     if formattedlist[0] == '~game':
         if message.author in user_db.usergameinstance:
-            await message.channel.send("You currently have a ongoing game.\nUse ~answer {yes/true/no/false} to respond.\nYour current question is:\n" + questions.questions[user_db.usergameinstance[message.author].qindex][0])
+            await message.channel.send(embed = discord.Embed(title = "Ongoing Game", description="Use ~answer {a/A or b/B} to respond to a question.\nEnter ~game to see your question again").add_field(name="Current Question: ", value=f'{questions.questions[user_db.usergameinstance[message.author].qindex][0]}'))
             return
         else:
             user_db.usergameinstance[message.author] = gameplayinstance()
@@ -105,7 +105,7 @@ async def on_message(message):
         if len(formattedlist) == 2:
             await message.channel.send(embed = await user_db.usergameinstance[message.author].iterate(formattedlist[1], message.author))
             return
-        await message.channel.send(embed = discord.Embed(Title = "Invalid Entry", description="Use ~answer {a/A or b/B} to respond to a question.\nEnter ~game to see your question again"))
+        await message.channel.send(embed = discord.Embed(title = "Invalid Entry", description="Use ~answer {a/A or b/B} to respond to a question.\nEnter ~game to see your question again"))
 
     if formattedlist[0] == '~highscore':
         if len(formattedlist) == 2:

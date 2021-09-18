@@ -49,7 +49,8 @@ class gameplayinstance:
         output = discord.Embed()
         if not hasattr(self,'qindex'):
             output.title = "True or False?:"
-            output.description = await self.newV()
+            output.description="Use ~answer {a/A or b/B} to respond to a question.\nEnter ~game to see your question again"
+            output.add_field(name = "Question: ", value = await self.newV())
             return output
         #print(self.qindex)
 
@@ -64,8 +65,8 @@ class gameplayinstance:
                 self.score +=1
                 output.title ='Correct!'
                 output.add_field(name="Explanation", value=questions.questions[self.qindex][2])
-                output.add_field(name="Current Score", value=f'{self.score}')
-                output.add_field(name="Next Question: ", value=await self.newV())
+                output.add_field(name="Current Score", value=f'{self.score}', inline=False)
+                output.add_field(name="Next Question: ", value=await self.newV(), inline=False)
                 return output
             else:
                 self.strikes-=1
@@ -73,7 +74,7 @@ class gameplayinstance:
                 output.add_field(name="Explanation", value=questions.questions[self.qindex][2])
                 if(self.strikes == 0):
                     output.title="Game Over"
-                    output.add_field(name="Current Score", value=f'{self.score}')
+                    output.add_field(name="Current Score", value=f'{self.score}', inline=False)
                     output.description = "Game over, you've used up all your chances.\nEnter ~game again to start a new round"
                     user_db.usergameinstance.pop(playername)
                     if playername in user_db.userhighscore_name:
@@ -82,6 +83,6 @@ class gameplayinstance:
                         user_db.userhighscore_name[playername] = self.score
                     return output
                 else:
-                    output.description = f'You have {self.strikes} changes left.'
-                    output.add_field(name="Next Question: ", value=await self.newV())
+                    output.description = f'You have {self.strikes} chances left.'
+                    output.add_field(name="Next Question: ", value=await self.newV(),inline=False)
                     return output
