@@ -1,6 +1,8 @@
 # Hack-the-north-2021
 
-This is a project to contribute for Hack The North 2021.
+This is a project to contribute for Hack The North 2021. 
+
+Intruducing, Covi - Covid themed discord bot, a fun and friendly way to learn about covid-19!
 
 ## Inspiration
 
