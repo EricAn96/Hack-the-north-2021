@@ -7,12 +7,13 @@ import user_db
 import questions
 import tips
 import help
+import env
 from discord.ext import commands
 import ISO3166
 
 
 client = discord.Client()
-TOKEN="ODg4Nzc2Mjg1MjMxMzg2NjM0.YUXnaw.xXM9xuX2RF2mzoRm3XU-41iXcUU"
+TOKEN=env.TOKEN_ENV
 
 
 @client.event
