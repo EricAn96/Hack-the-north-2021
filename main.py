@@ -29,7 +29,7 @@ async def display_covid_stats(command, covid_stats, country):
         for key, value in covid_stats.items():
             if key == 'cases':
                 info_display += f'Total Cases: {value}\n'
-                break
+                continue
             info_display += f'{key.capitalize()}: {value}\n'
 
         output.add_field(name='Statistics:', value=info_display)
@@ -46,7 +46,7 @@ async def display_covid_stats(command, covid_stats, country):
         for key, value in covid_stats.items():
             if key == 'cases':
                 info_display += f'Total Cases: {value}\n'
-                break
+                continue
             info_display += f'{key.capitalize()}: {value}\n'
 
         output.add_field(name='Statistics:', value=info_display)
