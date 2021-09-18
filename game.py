@@ -50,7 +50,7 @@ class gameplayinstance:
         return OV
 
     async def iterate(self, prompt, playername):
-        output = discord.Embed()
+        output = discord.Embed(color = 0xb23831)
         if not hasattr(self,'qindex'):
             output.title = "True or False?:"
             output.description="Use ~answer {a/A or b/B} to respond to a question.\nEnter ~game to see your question again"
