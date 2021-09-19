@@ -6,7 +6,7 @@ import user_db
 
 async def gethighscores():
     output = discord.Embed(
-        title='True/False Game Highscores',
+        title='Covid Trivia Game Highscores',
         color = 0xb23831,
     )
 
