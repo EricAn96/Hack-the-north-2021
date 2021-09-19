@@ -31,7 +31,7 @@ def covid_country(country):
     keys = ['active', 'critical', 'deaths', 'recovered', 'tests', 'today', 'cases']
     data = {x:stats[x] for x in keys if x in stats}
 
-    today = date.today('US/Eastern')
+    today = date.today(timezone('US/Eastern'))
     if url_valid:
         print(vac_stats)
         data['Vaccine Doses'] = vac_stats['timeline'][f"{today.month}/{today.day}/{today.year%100}"]
