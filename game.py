@@ -16,8 +16,11 @@ async def gethighscores():
     for e in range(0, len(arr)):
         OV += f"{e+1}. {arr[e][0]}: {arr[e][1]}\n"
 
-    print(OV)
-    output.add_field(name= "Top 10:", value = OV)
+    #print(OV)
+    if(OV != ""):
+        output.add_field(name= "Top 10:", value = OV)
+    else:
+        output.description = "No one has played a match yet.\nEnter ~game to start"
     return output
 
 
