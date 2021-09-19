@@ -1,5 +1,4 @@
 import requests
-from pytz import timezone
 from datetime import date
 import ISO3166
 
