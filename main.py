@@ -16,7 +16,6 @@ client = discord.Client()
 load_dotenv(find_dotenv())
 TOKEN=os.environ.get("TOKEN")
 
-
 @client.event
 async def on_ready():
     print('We have logged in a {0.user}'.format(client))

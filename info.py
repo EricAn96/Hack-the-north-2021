@@ -46,7 +46,7 @@ def covid_total():
     keys = ['active', 'critical', 'deaths', 'recovered', 'tests', 'today', 'cases']
     data = {x:stats[x] for x in keys if x in stats}
 
-    today = date.today(timezone('US/Eastern'))
+    today = date.today()
     if url_valid:
         data['Vaccine doses'] = vac_stats[f"{today.month}/{today.day-1}/{today.year%100}"]
 
