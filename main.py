@@ -129,7 +129,7 @@ async def on_message(message):
 
     if formattedlist[0] == '~game':
         if message.author in user_db.usergameinstance:
-            await message.channel.send(embed = discord.Embed(title = "Ongoing Game", description="Use ~answer {a/A or b/B} to respond to a question.\nEnter ~game to see your question again"),color = 0xb23831.add_field(name="Current Question: ", value=f'{questions.questions[user_db.usergameinstance[message.author].qindex][0]}'))
+            await message.channel.send(embed = discord.Embed(title = "Ongoing Game", description="Use ~answer {a/A or b/B} to respond to a question.\nEnter ~game to see your question again",color = 0xb23831).add_field(name="Current Question: ", value=f'{questions.questions[user_db.usergameinstance[message.author].qindex][0]}'))
             return
         else:
             user_db.usergameinstance[message.author] = gameplayinstance()
