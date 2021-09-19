@@ -49,6 +49,6 @@ def covid_total():
 
     today = date.today(timezone('US/Eastern'))
     if url_valid:
-        data['Vaccine doses'] = vac_stats[f"{today.month}/{today.day}/{today.year%100}"]
+        data['Vaccine doses'] = vac_stats[f"{today.month}/{today.day-1}/{today.year%100}"]
 
     return data, url_valid
