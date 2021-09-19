@@ -1,5 +1,5 @@
 import requests
-import json
+from pytz import timezone
 from datetime import date
 import ISO3166
 
@@ -34,7 +34,7 @@ def covid_country(country):
     today = date.today('US/Eastern')
     if url_valid:
         print(vac_stats)
-        data['Vaccine Doses'] = vac_stats['timeline'][f"{today.month}/{today.day-1}/{today.year%100}"]
+        data['Vaccine Doses'] = vac_stats['timeline'][f"{today.month}/{today.day}/{today.year%100}"]
 
     print(data)
     return data, url_valid
@@ -47,7 +47,7 @@ def covid_total():
     keys = ['active', 'critical', 'deaths', 'recovered', 'tests', 'today', 'cases']
     data = {x:stats[x] for x in keys if x in stats}
 
-    today = date.today()
+    today = date.today(timezone('US/Eastern'))
     if url_valid:
         data['Vaccine doses'] = vac_stats[f"{today.month}/{today.day}/{today.year%100}"]
 
