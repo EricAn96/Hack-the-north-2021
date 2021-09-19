@@ -18,6 +18,7 @@ async def gethighscores():
 
     #print(OV)
     if(OV != ""):
+        output.description = ""
         output.add_field(name= "Top 10:", value = OV)
     else:
         output.description = "No one has played a match yet.\nEnter ~game to start"
@@ -45,11 +46,14 @@ class gameplayinstance:
     def __init__(self):
         self.score = 0
         self.strikes = 3
+        self.AVarr = []
+        for i in range(0,len(questions.questions)):
+            self.AVarr.append(i)
 
     async def newV(self):
-        self.qindex = random.randint(0,len(questions.questions)-1)
-        OV = ""
-        OV += "\n" + questions.questions[self.qindex][0]
+        randV = random.randint(0,len(self.AVarr)-1)
+        self.qindex = self.AVarr.pop(randV)
+        OV = "\n" + questions.questions[self.qindex][0]
         return OV
 
     async def iterate(self, prompt, playername):
